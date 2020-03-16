@@ -11,11 +11,11 @@
 
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Styles -->
-        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
         <!-- Bootstrap CSS -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-        <link href="{{ asset('assets/css/awesome.min.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" media="screen">
+        <!-- Styles -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
     </head>
     <body>
 
@@ -42,13 +42,13 @@
                         @guest
                         <!-- Guest links -->
                             <li>
-                                <a href="./login.html" class="padding-20">
+                                <a href="{{ route('login') }}" class="padding-20">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i> Login
                                 </a>
                             </li>
                             @if (Route::has('register'))
                             <li>
-                                <a href="./register.html" class="padding-20">
+                                <a href="{{ route('register') }}" class="padding-20">
                                     <i class="fa fa-user-plus" aria-hidden="true"></i> Register
                                 </a>
                             </li>
