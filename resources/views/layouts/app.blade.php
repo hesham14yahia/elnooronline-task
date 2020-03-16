@@ -161,9 +161,9 @@
         <!-- End Navbar -->
 
 
-        <div class="container">
+        <main>
             @yield('content')
-        </div>
+        </main>
 
 
         <!-- Scripts -->
