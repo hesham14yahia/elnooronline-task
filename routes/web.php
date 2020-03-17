@@ -22,26 +22,16 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
         'as' => 'home'
     ]);
 
+    Route::get('/profile', [
+        'uses' => 'ArticlesController@index',
+        'as' => 'profile'
+    ]);
+
     Route::group(['prefix' => 'articles'], function () {
-
-        Route::get('/', [
-            'uses' => 'ArticlesController@index',
-            'as' => 'articles.index'
-        ]);
-
-        Route::get('/create', [
-            'uses' => 'ArticlesController@create',
-            'as' => 'articles.create'
-        ]);
 
         Route::post('/store', [
             'uses' => 'ArticlesController@store',
             'as' => 'articles.store'
-        ]);
-
-        Route::get('/edit/{id}', [
-            'uses' => 'ArticlesController@edit',
-            'as' => 'articles.edit'
         ]);
 
         Route::post('/update/{id}', [

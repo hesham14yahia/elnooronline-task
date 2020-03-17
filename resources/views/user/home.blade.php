@@ -15,6 +15,10 @@
 
             <div class="col-md-9">
 
+                <!-- Article Form -->
+                @include('components.articles_form')
+                <!-- /Article Form -->
+
                 @foreach ($articles as $article)
                 <!-- User Posts -->
                 @include('components.article')

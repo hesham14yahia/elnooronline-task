@@ -10,7 +10,7 @@ class ArticlesController extends Controller
     {
         $articles = auth()->user()->articles()->paginate(5);
 
-        return view('articles.index', [
+        return view('user.profile', [
             'articles' => $articles
         ]);
     }

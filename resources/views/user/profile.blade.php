@@ -7,10 +7,14 @@
 
             <div class="col-md-12">
 
+                <!-- Article Form -->
+                @include('components.articles_form')
+                <!-- /Article Form -->
+
                 @foreach ($articles as $article)
-                <!-- User Posts -->
+                <!-- User articles -->
                 @include('components.article')
-                <!-- /User Posts -->
+                <!-- /User articles -->
                 @endforeach
 
                 <!-- Pagination -->

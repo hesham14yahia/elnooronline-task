@@ -57,14 +57,6 @@
 
                         @else
 
-                        <!-- Create Article link -->
-                        <li>
-                            <a href="{{ route('login') }}" class="padding-20">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Create Article
-                            </a>
-                        </li>
-                        <!-- /Create Article link -->
-
                         <!-- User Dropdown -->
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle user-dropdown-toggle" data-toggle="dropdown" role="button"
@@ -75,8 +67,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ route('articles.index') }}">
-                                        <i class="fa fa-book fa-fw fa-lg"></i> Articles
+                                    <a href="{{ route('profile') }}">
+                                        <i class="fa fa-user fa-fw fa-lg"></i> Profile
                                     </a>
                                 </li>
                                 <li>
