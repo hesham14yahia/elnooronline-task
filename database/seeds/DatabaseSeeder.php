@@ -11,10 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // create user for test
+        // create main test user
         factory(\App\Models\User::class)->create([
-           'name' => 'User',
-           'email' => 'user@gmail.com'
+            'name' => 'User',
+            'email' => 'user@gmail.com'
         ]);
+
+        // create users for test articles
+        factory(\App\Models\User::class, 5)->create();
+
+        // create articles and random likes and dislkes
+        $this->call(ArticlesSeeder::class);
     }
 }

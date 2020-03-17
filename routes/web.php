@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'MainController@index')->name('mian');
+Route::get('/', 'MainController@index')->name('main');
 
 Auth::routes();
 
