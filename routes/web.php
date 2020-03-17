@@ -26,4 +26,32 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
         'uses' => 'HomeController@profile',
         'as' => 'profile'
     ]);
+
+    Route::group(['prefix' => 'article'], function () {
+
+        Route::get('/create', [
+            'uses' => 'articleController@create',
+            'as' => 'article.create'
+        ]);
+
+        Route::post('/store', [
+            'uses' => 'articleController@store',
+            'as' => 'article.store'
+        ]);
+
+        Route::get('/edit/{id}', [
+            'uses' => 'articleController@edit',
+            'as' => 'article.edit'
+        ]);
+
+        Route::post('/update/{id}', [
+            'uses' => 'articleController@update',
+            'as' => 'article.update'
+        ]);
+
+        Route::post('/delete/{id}', [
+            'uses' => 'articleController@delete',
+            'as' => 'article.delete'
+        ]);
+    });
 });

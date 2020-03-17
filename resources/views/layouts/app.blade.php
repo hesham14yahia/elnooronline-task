@@ -41,21 +41,29 @@
                     <ul class="nav navbar-nav navbar-right">
                         @guest
                         <!-- Guest links -->
-                            <li>
-                                <a href="{{ route('login') }}" class="padding-20">
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
-                                </a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li>
-                                <a href="{{ route('register') }}" class="padding-20">
-                                    <i class="fa fa-user-plus" aria-hidden="true"></i> Register
-                                </a>
-                            </li>
-                            @endif
+                        <li>
+                            <a href="{{ route('login') }}" class="padding-20">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                            </a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li>
+                            <a href="{{ route('register') }}" class="padding-20">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i> Register
+                            </a>
+                        </li>
+                        @endif
                         <!-- /Guest links -->
 
                         @else
+
+                        <!-- Create Article link -->
+                        <li>
+                            <a href="{{ route('login') }}" class="padding-20">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                            </a>
+                        </li>
+                        <!-- /Create Article link -->
 
                         <!-- User Dropdown -->
                         <li class="dropdown user-dropdown">
@@ -78,8 +86,6 @@
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="#">
-                                    </a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
