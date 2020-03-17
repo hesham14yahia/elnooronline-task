@@ -16,21 +16,19 @@ class ArticlesSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $creator_user) {
-            $articles = factory(Article::class, rand(1, 2))->create([
+            $article = factory(Article::class)->create([
                 'user_id' => $creator_user->id
             ]);
 
-            foreach ($articles as $article) {
-                foreach ($users as $user) {
-                    if ($creator_user->id !== $user->id) {
+            foreach ($users as $user) {
+                if ($creator_user->id !== $user->id) {
+                    if (rand(0, 1)) {
                         if (rand(0, 1)) {
-                            if (rand(0, 1)) {
-                                $article->likes_users()->attach($user->id);
-                            }
-                        } else {
-                            if (rand(0, 1)) {
-                                $article->dislikes_users()->attach($user->id);
-                            }
+                            $article->likes_users()->attach($user->id);
+                        }
+                    } else {
+                        if (rand(0, 1)) {
+                            $article->dislikes_users()->attach($user->id);
                         }
                     }
                 }

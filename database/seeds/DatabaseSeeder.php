@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // create users for test articles
-        factory(\App\Models\User::class, 5)->create();
+        factory(\App\Models\User::class, 10)->create();
 
         // create articles and random likes and dislkes
         $this->call(ArticlesSeeder::class);
