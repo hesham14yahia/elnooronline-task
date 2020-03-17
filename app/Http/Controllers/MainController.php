@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index()
     {
         $articles = Article::orderBy('id', 'DESC')->paginate(5);

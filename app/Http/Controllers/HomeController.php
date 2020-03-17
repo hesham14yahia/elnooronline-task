@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::where('user_id', '!=', auth()->user()->id)->orderBy('id', 'DESC')->paginate(5);
+        $users = User::where('id', '!=', auth()->user()->id)->get()->take(20);
+
+        return view('home', [
+            'articles' => $articles,
+            'users' => $users
+        ]);
     }
 }
