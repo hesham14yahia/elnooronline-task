@@ -105,7 +105,7 @@
                 <i class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></i>
             </a>
         </span>
-        <!-- Dislike comment form -->
+        <!-- /Dislike Button -->
 
     </div>
 </div>
