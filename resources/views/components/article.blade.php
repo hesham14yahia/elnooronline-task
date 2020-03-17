@@ -12,7 +12,7 @@
                 </small>
             </div>
 
-            @if (\Illuminate\Support\Str::contains(request()->url(), 'profile'))
+            @if (\Illuminate\Support\Str::contains(request()->url(), 'articles'))
             <!-- Article control -->
             <div class="pull-right">
                 <!-- Single button -->
