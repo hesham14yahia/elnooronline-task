@@ -10,23 +10,26 @@
                 <!-- All Users -->
                 <h4 class="text-center">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    All Users
+                    Our Bloggers
                 </h4>
                 <ul class="list-group">
+                    @foreach ($users as $user)
                     <li class="list-group-item">
                         <a href="#">
                             <img data-src="holder.js/50x50" class="img img-circle">
                         </a>
                         <a href="#">
-                            Ahmed Fathy
+                            {{ $user->name }}
                         </a>
                     </li>
+                    @endforeach
 
                 </ul>
                 <!-- /All Users -->
             </div>
 
             <div class="col-md-9">
+                @foreach ($articles as $article)
 
                 <!-- User Posts -->
                 <div class="panel panel-default user-post-panel">
@@ -36,10 +39,10 @@
                             <img data-src="holder.js/50x50" class="img user-avatar img-circle pull-left">
 
                             <div class="pull-left">
-                                <h4 class="user-name ">Ahmed Fathy</h4>
+                                <h4 class="user-name ">{{ $article->user->name }}</h4>
                                 <small class="text-muted">
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    2 hours ago
+                                    {{ $article->created_at }}
                                 </small>
                             </div>
 
@@ -49,16 +52,12 @@
                     </div>
                     <!-- Post content-->
                     <div class="panel-body">
-                        <img data-src="holder.js/800x300" class="img img-responsive">
+                        @if ($article->image !== null)
+                            <img src="{{ $article->imageUrl }}" class="img img-responsive">
+                        @endif
                         <br>
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                            but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of
-                            Lorem Ipsum.
+                            {{ $article->body }}
                         </p>
                     </div>
                     <!-- /Post content-->
@@ -66,7 +65,7 @@
                     <div class="panel-footer">
                         <!-- Like Button -->
                         <span class="like-btn">
-                            <small class="text-muted likes">20</small>
+                            <small class="text-muted likes">{{ $article->likes_count() }}</small>
                             <a href="#" class="btn-btn-primary">
                                 <i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i>
                             </a>
@@ -75,7 +74,7 @@
 
                         <!-- Dislike Button -->
                         <span class="like-btn">
-                            <small class="text-muted likes">3</small>
+                            <small class="text-muted likes">{{ $article->dislikes_count() }}</small>
                             <a href="#" class="btn-btn-primary">
                                 <i class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></i>
                             </a>
@@ -86,6 +85,10 @@
                     </div>
                 </div>
                 <!-- /User Posts -->
+                @endforeach
+                <!-- Pagination -->
+                {{ $articles->links() }}
+                <!-- /Pagination -->
             </div>
         </div>
     </div>

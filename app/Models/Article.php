@@ -10,6 +10,8 @@ class Article extends Model
         'body', 'user_id'
     ];
 
+    protected $with = ['user'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,5 +25,15 @@ class Article extends Model
     public function dislikes_users()
     {
         return $this->belongsToMany(User::class, 'dislikes', 'article_id', 'user_id');
+    }
+
+    public function likes_count()
+    {
+        return $this->likes_users->count();
+    }
+
+    public function dislikes_count()
+    {
+        return $this->dislikes_users->count();
     }
 }

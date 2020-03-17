@@ -16,7 +16,7 @@ class ArticlesSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $creator_user) {
-            $articles = factory(Article::class, rand(3, 7))->create([
+            $articles = factory(Article::class, rand(1, 2))->create([
                 'user_id' => $creator_user->id
             ]);
 
