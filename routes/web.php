@@ -15,4 +15,15 @@ Route::get('/', 'MainController@index')->name('main');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
+
+    Route::get('/', [
+        'uses' => 'HomeController@index',
+        'as' => 'home'
+    ]);
+
+    Route::get('/profile', [
+        'uses' => 'HomeController@profile',
+        'as' => 'profile'
+    ]);
+});

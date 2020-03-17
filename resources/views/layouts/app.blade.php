@@ -67,7 +67,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('profile') }}">
                                         <i class="fa fa-user fa-fw fa-lg"></i> Profile
                                     </a>
                                 </li>

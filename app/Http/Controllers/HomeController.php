@@ -27,9 +27,18 @@ class HomeController extends Controller
         $articles = Article::where('user_id', '!=', auth()->user()->id)->orderBy('id', 'DESC')->paginate(5);
         $users = User::where('id', '!=', auth()->user()->id)->get()->take(20);
 
-        return view('home', [
+        return view('user.home', [
             'articles' => $articles,
             'users' => $users
+        ]);
+    }
+
+    public function profile()
+    {
+        $articles = auth()->user()->articles()->paginate(5);
+
+        return view('user.profile', [
+            'articles' => $articles
         ]);
     }
 }

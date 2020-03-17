@@ -38,6 +38,6 @@ class User extends Authenticatable
 
     public function articles()
     {
-        return $this->hasMony(Article::class);
+        return $this->hasMany(Article::class);
     }
 }
