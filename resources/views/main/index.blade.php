@@ -42,11 +42,10 @@
                                 <h4 class="user-name ">{{ $article->user->name }}</h4>
                                 <small class="text-muted">
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    {{ $article->created_at }}
+                                    {{ humanize($article->created_at) }}
                                 </small>
                             </div>
 
-                            <!-- /Post control -->
                         </div>
 
                     </div>
