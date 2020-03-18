@@ -9,8 +9,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleRequest extends FormRequest
 {
-
     use ImageTrait;
+
+    private $article;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -18,7 +20,21 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user();
+        if ($this->input('edit_article')) {
+            /*
+            * authorize to update
+            * if user logged in
+            * edit article id sent
+            * article user is the logged in user
+            */
+            $this->article = Article::findOrFail($this->input('edit_article'));
+
+            return $this->article->user_id == auth()->user()->id ?? redirect()->back();
+        } else {
+
+            // authorize to create if user logged in
+            return auth()->user();
+        }
     }
 
     /**
@@ -51,6 +67,15 @@ class ArticleRequest extends FormRequest
             'body' => $this->body,
             'image' => $this->upload_image($this->file('image'), 'articles'),
             'user_id' => auth()->user()->id
+        ]);
+    }
+
+    // update article
+    public function updateArticle()
+    {
+        $this->article->update([
+            'body' => $this->body ?? $this->article->body,
+            'image' => $this->upload_image($this->file('image'), 'articles', $this->article->image)
         ]);
     }
 }

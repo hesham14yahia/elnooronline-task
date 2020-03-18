@@ -23,14 +23,14 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a data-toggle="modal" href="#modal-id">
-                                <i class="fa fa-edit fa-lg" aria-hidden="true"></i> Edit Post
+                            <a href="{{ route('profile') . '?edit_aricle=' . $article->id }}">
+                                <i class="fa fa-edit fa-lg" aria-hidden="true"></i> Edit
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
                             <a href="javascript:;">
-                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete Post
+                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete
                             </a>
                         </li>
                     </ul>

@@ -34,7 +34,7 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
             'as' => 'articles.store'
         ]);
 
-        Route::post('/update/{id}', [
+        Route::post('/update', [
             'uses' => 'ArticlesController@update',
             'as' => 'articles.update'
         ]);
