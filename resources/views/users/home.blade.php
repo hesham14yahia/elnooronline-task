@@ -7,7 +7,7 @@
 
             <!-- Form errors messages -->
             <div class="col-md-12">
-                @include('components.errors')
+                @include('components.system_messages')
             </div>
             <!-- /Form errors messages -->
 
