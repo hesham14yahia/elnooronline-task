@@ -34,7 +34,9 @@ class ArticlesController extends Controller
         $request->storeArticle();
 
         // return to home or profile
-        return redirect()->back();
+        return redirect()->back()->with([
+            "success" => "Article created successfully"
+        ]);
     }
 
     public function update(ArticleRequest $request)
@@ -43,7 +45,9 @@ class ArticlesController extends Controller
         $request->updateArticle();
 
         // return to home or profile
-        return redirect()->back();
+        return redirect()->back()->with([
+            "success" => "Article updated successfully"
+        ]);
     }
 
     public function delete(ArticleRequest $request)
@@ -52,6 +56,8 @@ class ArticlesController extends Controller
         $request->deleteArticle();
 
         // return to home or profile
-        return redirect()->back();
+        return redirect()->back()->with([
+            "success" => "Article deleted successfully"
+        ]);
     }
 }
