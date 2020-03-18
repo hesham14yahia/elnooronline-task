@@ -45,4 +45,13 @@ class ArticlesController extends Controller
         // return to home or profile
         return redirect()->back();
     }
+
+    public function delete(ArticleRequest $request)
+    {
+        // delete article
+        $request->deleteArticle();
+
+        // return to home or profile
+        return redirect()->back();
+    }
 }

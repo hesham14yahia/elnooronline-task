@@ -8,7 +8,7 @@
     <div class="panel-body">
         <form action="{{ isset($get_article) ? route('articles.update') : route('articles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="edit_article" value="{{ $get_article->id }}">
+            <input type="hidden" name="article_id" value="{{ $get_article->id }}">
             <textarea name="body" rows="5" class="form-control" placeholder="What's on your mind, {{ auth()->user()->name }}?">{{ old('body') ?? ( isset($get_article->body) ? $get_article->body : null) }}</textarea>
             <br>
             <input type="file" name="image" class="hidden input-image" id="input-image">

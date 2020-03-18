@@ -20,14 +20,14 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->input('edit_article')) {
+        if ($this->input('article_id')) {
             /*
-            * authorize to update
+            * authorize to update and delete
             * if user logged in
-            * edit article id sent
+            * article id sent
             * article user is the logged in user
             */
-            $this->article = Article::findOrFail($this->input('edit_article'));
+            $this->article = Article::findOrFail($this->input('article_id'));
 
             return $this->article->user_id == auth()->user()->id ?? redirect()->back();
         } else {
@@ -44,10 +44,15 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'body' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
-        ];
+        if ($this->input('article_id'))
+            return [
+                'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+            ];
+        else
+            return [
+                'body' => 'required',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+            ];
     }
 
     // upload image
@@ -77,5 +82,11 @@ class ArticleRequest extends FormRequest
             'body' => $this->body ?? $this->article->body,
             'image' => $this->upload_image($this->file('image'), 'articles', $this->article->image)
         ]);
+    }
+
+    // delete article
+    public function deleteArticle()
+    {
+        $this->article->delete();
     }
 }

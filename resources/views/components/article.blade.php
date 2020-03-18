@@ -29,13 +29,39 @@
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="javascript:;">
+                            <a data-toggle="modal" href="#modal-id{{ $article->id }}">
                                 <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
+
+            <!-- Delete Article Form -->
+            <div class="modal fade" id="modal-id{{ $article->id }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title">Delete Article</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="alert alert-danger">Are you sure ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('articles.delete') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!-- Edit Post Form -->
 
             <!-- /Article control -->
             @endif

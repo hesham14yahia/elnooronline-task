@@ -39,7 +39,7 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
             'as' => 'articles.update'
         ]);
 
-        Route::post('/delete/{id}', [
+        Route::post('/delete', [
             'uses' => 'ArticlesController@delete',
             'as' => 'articles.delete'
         ]);
