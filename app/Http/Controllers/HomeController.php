@@ -12,7 +12,7 @@ class HomeController extends Controller
         $articles = Article::where('user_id', '!=', auth()->user()->id)->orderBy('id', 'DESC')->paginate(5);
         $users = User::where('id', '!=', auth()->user()->id)->get()->take(20);
 
-        return view('user.home', [
+        return view('users.home', [
             'articles' => $articles,
             'users' => $users
         ]);

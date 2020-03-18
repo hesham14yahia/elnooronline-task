@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'body', 'user_id'
+        'body', 'user_id', 'image'
     ];
 
     protected $with = ['user'];
@@ -35,5 +35,11 @@ class Article extends Model
     public function dislikes_count()
     {
         return $this->dislikes_users->count();
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ?
+            file_exists(public_path('uploads/articles' . '/' . $this->image)) ? asset('uploads/articles') . '/' . $this->image : null : null;
     }
 }

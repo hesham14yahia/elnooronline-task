@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -10,8 +10,15 @@ class ArticlesController extends Controller
     {
         $articles = auth()->user()->articles()->paginate(5);
 
-        return view('user.profile', [
+        return view('users.profile', [
             'articles' => $articles
         ]);
+    }
+
+    public function store(ArticleRequest $request)
+    {
+        $request->storeArticle();
+
+        return redirect()->back();
     }
 }

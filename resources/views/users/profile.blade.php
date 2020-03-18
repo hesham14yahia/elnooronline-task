@@ -5,24 +5,22 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-
-                <!-- Our Bloggers -->
-                @include('components.our_bloggers')
-                <!-- /Our Bloggers -->
-
+            <!-- Form errors messages -->
+            <div class="col-md-12">
+                @include('components.errors')
             </div>
+            <!-- /Form errors messages -->
 
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <!-- Article Form -->
                 @include('components.articles_form')
                 <!-- /Article Form -->
 
                 @foreach ($articles as $article)
-                <!-- User Posts -->
+                <!-- User articles -->
                 @include('components.article')
-                <!-- /User Posts -->
+                <!-- /User articles -->
                 @endforeach
 
                 <!-- Pagination -->

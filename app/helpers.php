@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 
+// humanize datetime
 if (!function_exists('humanize')) {
 
     function humanize($date)
