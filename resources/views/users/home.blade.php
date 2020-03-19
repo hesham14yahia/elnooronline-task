@@ -25,11 +25,15 @@
                 @include('components.articles_form')
                 <!-- /Article Form -->
 
+                <!-- Article Ordering -->
+                @include('components.articles_ordering')
+                <!-- /Article Ordering -->
+
+                <!-- User Articles -->
                 @foreach ($articles as $article)
-                <!-- User Posts -->
                 @include('components.article')
-                <!-- /User Posts -->
                 @endforeach
+                <!-- /User Articles -->
 
                 <!-- Pagination -->
                 {{ $articles->links() }}

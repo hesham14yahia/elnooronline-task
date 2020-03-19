@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'body', 'user_id', 'image'
+        'body', 'user_id', 'image', 'views_count', 'most_liked'
     ];
 
     protected $with = ['user'];
@@ -51,5 +51,10 @@ class Article extends Model
     public function disliked($user)
     {
         return in_array($user->id, $this->dislikes_users->pluck('id')->toArray());
+    }
+
+    public function getRecommendedAttribute()
+    {
+        return ($this->most_liked / $this->views_count * 100);
     }
 }

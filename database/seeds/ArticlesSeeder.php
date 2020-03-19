@@ -25,10 +25,20 @@ class ArticlesSeeder extends Seeder
                     if (rand(0, 1)) {
                         if (rand(0, 1)) {
                             $article->likes_users()->attach($user->id);
+
+                            // increase article most liked
+                            $article->update([
+                                'most_liked' => $article->most_liked + 1
+                            ]);
                         }
                     } else {
                         if (rand(0, 1)) {
                             $article->dislikes_users()->attach($user->id);
+
+                            // decrease article most liked
+                            $article->update([
+                                'most_liked' => $article->most_liked ?? $article->most_liked - 1
+                            ]);
                         }
                     }
                 }

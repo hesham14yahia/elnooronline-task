@@ -10,7 +10,12 @@ class ArticlesController extends Controller
 {
     public function index(Request $request)
     {
-        $articles = auth()->user()->articles()->orderBy('id', 'DESC')->paginate(5);
+        if ($request->get('top_view'))
+            $articles = auth()->user()->articles()->orderBy('id', 'DESC');
+        else
+            $articles = auth()->user()->articles()->orderBy('id', 'DESC');
+
+        $articles = $articles->paginate(5);
 
         // check if user want to edit article
         if ($request->get('edit_aricle')) {
@@ -51,14 +56,32 @@ class ArticlesController extends Controller
 
             // remove like
             $article->likes_users()->detach(auth()->user()->id);
+
+            // decrease article most liked
+            $article->update([
+                'most_liked' => $article->most_liked ?? $article->most_liked - 1
+            ]);
         } else {
 
             // check if user dislike article
-            if ($article->disliked(auth()->user()))
+            if ($article->disliked(auth()->user())) {
+
+                // remove dislike
                 $article->dislikes_users()->detach(auth()->user()->id);
+
+                // increase article most liked
+                $article->update([
+                    'most_liked' => $article->most_liked + 1
+                ]);
+            }
 
             // like article
             $article->likes_users()->attach(auth()->user()->id);
+
+            // increase article most liked
+            $article->update([
+                'most_liked' => $article->most_liked + 1
+            ]);
         }
 
         // redirect back to view
@@ -76,14 +99,32 @@ class ArticlesController extends Controller
 
             // remove dislike
             $article->dislikes_users()->detach(auth()->user()->id);
+
+            // increase article most liked
+            $article->update([
+                'most_liked' => $article->most_liked + 1
+            ]);
         } else {
 
             // check if user like article
-            if ($article->liked(auth()->user()))
+            if ($article->liked(auth()->user())) {
+
+                // remove like
                 $article->likes_users()->detach(auth()->user()->id);
+
+                // decrease article most liked
+                $article->update([
+                    'most_liked' => $article->most_liked ?? $article->most_liked - 1
+                ]);
+            }
 
             // dislike article
             $article->dislikes_users()->attach(auth()->user()->id);
+
+            // decrease article most liked
+            $article->update([
+                'most_liked' => $article->most_liked ?? $article->most_liked - 1
+            ]);
         }
 
         // redirect back to view

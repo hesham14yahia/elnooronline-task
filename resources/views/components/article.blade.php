@@ -76,9 +76,12 @@
             <img src="{{ $article->imageUrl }}" class="img img-responsive">
         @endif
         <br>
+        <a href="{{ route('main.show', $article->id) }}" class="link-unstyled">
+
         <p>
             {{ $article->body }}
         </p>
+        </a>
     </div>
     <!-- /Article content-->
 

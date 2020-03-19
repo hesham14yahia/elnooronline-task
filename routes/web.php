@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'MainController@index')->name('main');
+Route::get('/article/{id}', 'MainController@show')->name('main.show');
 
 Auth::routes();
 

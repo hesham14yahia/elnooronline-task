@@ -1,22 +1,29 @@
-(function ($) {
-    $(document).on('change', 'input.input-image', function (event) {
+(function($) {
+    $(document).on("change", "input.input-image", function(event) {
         event.preventDefault();
         var reader = new FileReader();
 
-        var img = $('label.upload-label img');
+        var img = $("label.upload-label img");
 
         if (!this.files.length) {
-            img.attr('src', 'holder.js/100x100?text=Upload Photo');
+            img.attr("src", "holder.js/100x100?text=Upload Photo");
             Holder.run({
                 images: img[0]
             });
             return;
         }
-        reader.onload = function (e) {
-            img.attr('src', e.target.result);
+        reader.onload = function(e) {
+            img.attr("src", e.target.result);
         };
 
         // read the image file as a data URL.
         reader.readAsDataURL(this.files[0]);
-    })
-})($)
+    });
+
+    $(".ordering-form select").change(function() {
+        console.log(0);
+        $(this)
+            .closest("form")
+            .submit();
+    });
+})($);
