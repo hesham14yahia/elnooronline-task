@@ -87,7 +87,7 @@
         <!-- Like Button -->
         <span class="like-btn">
             <small class="text-muted likes">{{ $article->likes_count() }}</small>
-            <a href="#" class="btn-btn-primary">
+            <a href="{{ route('articles.like', $article->id) }}" class="btn-btn-primary {{ $article->liked(auth()->user()) ? '' : 'btn-default' }}">
                 <i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i>
             </a>
         </span>
@@ -96,7 +96,7 @@
         <!-- Dislike Button -->
         <span class="like-btn">
             <small class="text-muted likes">{{ $article->dislikes_count() }}</small>
-            <a href="#" class="btn-btn-primary">
+            <a href="{{ route('articles.dislike', $article->id) }}" class="btn-btn-primary {{ $article->disliked(auth()->user()) ? '' : 'btn-default' }}">
                 <i class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></i>
             </a>
         </span>

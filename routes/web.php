@@ -34,6 +34,16 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
             'as' => 'articles.store'
         ]);
 
+        Route::get('/like/{id}', [
+            'uses' => 'ArticlesController@like',
+            'as' => 'articles.like'
+        ]);
+
+        Route::get('/dislike/{id}', [
+            'uses' => 'ArticlesController@dislike',
+            'as' => 'articles.dislike'
+        ]);
+
         Route::post('/update', [
             'uses' => 'ArticlesController@update',
             'as' => 'articles.update'
